@@ -36,7 +36,7 @@ export const TypewriterEffect = ({
           width: "fit-content",
         },
         {
-          duration: 0.3,
+          duration: 0.2,
           delay: stagger(0.1),
           ease: "easeInOut",
         }
@@ -72,7 +72,7 @@ export const TypewriterEffect = ({
   return (
     <div
       className={cn(
-        "text-base sm:text-xl md:text-4xl lg:text-6xl  ",
+        "text-3xl sm:text-4xl md:text-5xl lg:text-6xl  ",
         className
       )}
     >

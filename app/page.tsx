@@ -17,7 +17,7 @@ export default function Home() {
 <section id="Services"><Services/></section>
 <section id="Portfolio"><Portfolio/></section>
 <section id="about-us"></section>
-{/* <section id="contact-us"> <Contact/></section> */}
+  <section id="contact-us"> <Contact/></section>  
 {/* <section id="consultation">...</section> */}
     
   </div>

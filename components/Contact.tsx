@@ -1,11 +1,11 @@
 
-'use client'
+ 'use client'
 import Image from "next/image";
 import React, { Component } from 'react'
  
  
 import { Button } from "@/components/ui/button"
-import axios from "axios";
+ 
 import { Input } from "@/components/ui/input"
  
 import * as z from "zod"
@@ -14,9 +14,7 @@ import { useForm } from "react-hook-form"
 import { IoLocationOutline, IoMail } from "react-icons/io5";
 import { MdMail, MdOutlineLocalPhone, MdPin } from "react-icons/md";
  
-import { Separator } from "./ui/separator";
-import { FaDiscord ,FaSpotify} from "react-icons/fa";
-import { useToast } from "@/components/ui/use-toast"
+ 
 
 import {
     Card,
@@ -34,29 +32,24 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-  } from "@/components/ui/form"
+  } from "@/components/ui/form" 
  
-  
- 
-  import { PiGraduationCap, PiTreeStructureLight } from "react-icons/pi";
+import { Textarea } from "./ui/textarea";
+import ContactSchema from "./schema/contactformSchema";
+import { ContactDetails } from "@/actions/ContactDetails";
+import { toast } from "./ui/use-toast";
  
 
-  const formSchema = z.object({
-         name: z.string().min(2).max(50),
-         email:z.string().email(),
-         subject:z.string().min(1,{message:"required"}).max(30),
-         message:z.string().min(1,{message:"required"}).max(300),
-         phone:z.string().min(10,{message:"Invaid phone"})
-  }) 
+ 
    
 
  
  
      const  Contact  = ()=> {
 
-      const { toast } = useToast();
-      const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    
+      const form = useForm<z.infer<typeof ContactSchema>>({
+        resolver: zodResolver(ContactSchema),
         defaultValues: {
           name: "",
           email:"",
@@ -66,48 +59,61 @@ import {
         },
       })
      
-    const [isloding ,setisloding] = React.useState(false);
+ 
     
-    async  function onSubmit(values: z.infer<typeof formSchema>) {
+    async  function onSubmit(values: z.infer<typeof ContactSchema>) {
         
-       console.log(values)
+         const res =  await ContactDetails(values);
+
+         if(res?.success){
+          toast({
+            title:"we contact with you"
+          })
+         }
+
+         if(res?.error){
+          toast({
+            title:"something went wrong"
+          }) 
+        }
 
         
       }
     return (
   <>
     <section className="grid place-items-center w-full relative h-full  mt-20 py-20 " id="contact" >
-     
+    <h1 className="text-4xl  ">Contact Us</h1>
+        <p className='mt-2 text-sm md:text-base lg:text-lg text-gray-600 text-center'>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi, accusantium.
+        </p>
     <main className="flex  w-[90%]  md:w-[80%] h-full justify-center items-center  ">
  
    <div className="w-full  relative">
-   <h1 className="flex flex-row gap-2 text-xl font-normal"> <PiGraduationCap size={22}/> Contact Me</h1>
+ 
     
    <div className="mt-5  w-full  lg:grid-cols-2 grid  sm:grid-cols-1  gap-4   ">
-              <div className="w-full">
-                 <h3 className="text-xl">Contact Info</h3>
-               
-                  <div className="flex flex-col gap-5 mt-8">
+              <div className="w-full"> 
+                  <div className="flex flex-col gap-5 ">
                     <div className="p-5 border shadow-sm flex gap-4 items-center">
                     <MdOutlineLocalPhone size={23}/>
                            <div>
-                           <h1 className="text-lg"> Phone</h1>
-                             <h3>+91 8855964895</h3>
+                           <h1 className="text-md"> Phone</h1>
+                             <h3 className="text-sm">+91 1112223334</h3>
                            </div>
                       </div>
                       <div className="p-5 border shadow-sm flex gap-4 items-center">  
                       <IoMail size={23}/>
                       <div>
-                      <h1 className="text-lg"> Email</h1>
-                      <h3>mayurshinde4895@gmail.com</h3>   
+                      <h1 className="text-md"> Email</h1>
+                      <h3 className="text-sm">athareinteriors@gmail.com</h3>   
                            </div>
               
                       </div>
                       <div className="p-5 border shadow-sm flex gap-4 items-center">
                       <IoLocationOutline size={23}/>
                       <div>
-                      <h1 className="text-lg">  location</h1>
-                      <h3>pimple gurav, pune</h3>     
+                      <h1 className="text-md">  location</h1>
+                      <h3 className="text-sm">pimple gurav, pune</h3>     
                            </div>
                      
                       </div>
@@ -118,22 +124,23 @@ import {
 
               <div className="w-full"> 
               <Card className="p-3 py-6 w-auto relative h-auto shadow-sm">
-                <CardTitle>Send Message</CardTitle>
+                <CardTitle className="text-xl font-medium">Send Message</CardTitle>
                 <CardDescription className="mt-1">send message to connect with me.</CardDescription>
                 <br />
                 <CardContent>  
                 <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+         <div className=" flex items-center gap-2 w-full">
+
+         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
-          
+            <FormItem className=" w-full"> 
+                <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input placeholder="Enter Name" {...field} />
-              </FormControl> 
-              <FormMessage  className="text-xs"/>
+              </FormControl>  
             </FormItem>
           )}
         />
@@ -141,24 +148,24 @@ import {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-            
+            <FormItem className=" w-full"> 
+                <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="Enter Email" {...field} />
-              </FormControl> 
-              <FormMessage  className="text-xs"/>
+              </FormControl>  
             </FormItem>
           )}
         />
+         </div>
               <FormField
           control={form.control}
           name="phone"
           render={({ field }) => (
             <FormItem>
+                <FormLabel>Phone</FormLabel>
               <FormControl>
                 <Input placeholder="Enter phone" {...field} />
-              </FormControl> 
-              <FormMessage  className="text-xs"/>
+              </FormControl>  
             </FormItem>
           )}
         />
@@ -167,26 +174,33 @@ import {
           name="subject"
           render={({ field }) => (
             <FormItem> 
+                <FormLabel>Subject</FormLabel>
               <FormControl>
                 <Input placeholder="Enter Subject" {...field} />
-              </FormControl> 
-              <FormMessage  className="text-xs"/>
+              </FormControl>  
             </FormItem>
           )}
         />
-           <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>  
-              <FormControl>
-                <Input placeholder="Message" {...field} />
-              </FormControl> 
-              <FormMessage  className="text-xs"/>
-            </FormItem>
-          )}
-        />
-        <Button type="submit">{isloding ? "sending...":"Send Message"}</Button>
+             <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl> 
+                       <div className=" relative items-center">
+                       <Textarea
+                  placeholder="Tell us a little bit about yourself"
+                  className="resize-none"
+                  {...field}
+                />   
+                     </div>
+                    </FormControl>
+                    
+                  </FormItem>
+                )}
+              />
+        <Button type="submit"> Send Message</Button>
       </form>
     </Form>
         </CardContent>

@@ -21,6 +21,9 @@ const config = {
     },
     extend: {
       colors: {
+        theme:{
+          DEFAULT:'bg-rose-500'
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -54,6 +57,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+
       },
       borderRadius: {
         lg: "var(--radius)",

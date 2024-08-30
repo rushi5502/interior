@@ -44,12 +44,74 @@ import { PiLockKeyLight } from "react-icons/pi";
 import { Card, CardFooter } from "./ui/card";
 import ConsultSchema from "./schema/ConsultSchema";
 import { Textarea } from "./ui/textarea";
+import { SavedUser } from "@/actions/SavedUser";
  
 
  
 const ConsultForm = () => {
  
- 
+  const areas = [
+    {
+      name: "1 BHK",
+      value: "1 BHK",
+    },
+    {
+      name: "2 BHK",
+      value: "2 BHK",
+    },
+    {
+      name: "3 BHK",
+      value: "3 BHK",
+    },
+    {
+      name: "Villa",
+      value: "Villa",
+    },
+    {
+      name: "Penthouse",
+      value: "Penthouse",
+    },
+    {
+      name: "Studio Apartment",
+      value: "Studio Apartment",
+    },
+    {
+      name: "Commercial Space",
+      value: "Commercial Space",
+    },
+    {
+      name: "Office",
+      value: "Office",
+    },
+    {
+      name: "Retail Store",
+      value: "Retail Store",
+    },
+    {
+      name: "Restaurant",
+      value: "Restaurant",
+    },
+    {
+      name: "Café",
+      value: "Café",
+    },
+    {
+      name: "Hotel Room",
+      value: "Hotel Room",
+    },
+    {
+      name: "Lobby",
+      value: "Lobby",
+    },
+    {
+      name: "Gym",
+      value: "Gym",
+    },
+    {
+      name: "Spa",
+      value: "Spa",
+    },
+  ];
   
   
   const {toast} = useToast();
@@ -69,16 +131,24 @@ const ConsultForm = () => {
 
   const isloding = form.formState.isSubmitting;
   async function onSubmit(values: z.infer<typeof ConsultSchema>) {
+       
 
-    alert("hii");
-     console.log(values);
-     
+    const res = await SavedUser(values);
+
+    if(res?.success){
+      toast({title:"Your request has been submitted successfully!"});
+      router.push("/thank-you");
+    }
+
+    if(res?.error){
+      toast({title: "something went wrong"});
+    }
   }
  
   return (
     <>
    
-   <Card className=" pt-0 py-5 w-full shadow-none border-none ">
+   <Card className=" pt-0 py-5 w-full shadow-none border-none px-4 ">
         
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -90,9 +160,9 @@ const ConsultForm = () => {
                   <FormItem className="w-full">
                     <FormLabel>name</FormLabel>
                     <FormControl>
-                     <div className=" relative">
+                     <div className=" relative items-center">
                      <Input placeholder="John Doe" {...field}  className="pl-8"/>
-                     <CiUser  className=" absolute top-[9px] left-2"/>
+                     <CiUser  className=" absolute top-[11px] left-2"/>
                      </div>
                     </FormControl>
                   </FormItem>
@@ -105,9 +175,9 @@ const ConsultForm = () => {
                   <FormItem className="w-full">
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                     <div className=" relative">
+                     <div className=" relative items-center">
                      <Input placeholder="example@gmail.com" {...field}  className="pl-8"/>
-                     <CiAt  className=" absolute top-[9px] left-2"/>
+                     <CiAt  className=" absolute top-[11px] left-2"/>
                      </div>
                     </FormControl>
                   </FormItem>
@@ -120,19 +190,17 @@ const ConsultForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Phone</FormLabel>
-                    <FormControl>
-                     
-                       <div className=" relative">
+                    <FormControl> 
+                       <div className=" relative items-center">
                        <Input
                         type="phone"
                         placeholder="Enter Mobile Number"
                         className="pl-8"
                         {...field}
                       />
-                     <CiPhone   className=" absolute top-[9px] left-2"/>
+                     <CiPhone   className=" absolute top-[11px] left-2"/>
                      </div>
-                    </FormControl>
-                    
+                    </FormControl> 
                     
                   </FormItem>
                 )}
@@ -144,9 +212,8 @@ const ConsultForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Address</FormLabel>
-                    <FormControl>
-                     
-                       <div className=" relative">
+                    <FormControl> 
+                       <div className=" relative items-center">
                        <Textarea
                   placeholder="Enter your address"
                   className="resize-none"
@@ -165,9 +232,8 @@ const ConsultForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Description</FormLabel>
-                    <FormControl>
-                     
-                       <div className=" relative">
+                    <FormControl> 
+                       <div className=" relative items-center">
                        <Textarea
                   placeholder="Tell us a little bit about yourself"
                   className="resize-none"
@@ -194,9 +260,13 @@ const ConsultForm = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                     {
+                       areas.map((area, index) => (
+                         <SelectItem key={index} value={area.value}>
+                           {area.name}
+                         </SelectItem>
+                       ))
+                     }
                 </SelectContent>
               </Select>
                      
