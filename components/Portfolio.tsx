@@ -73,7 +73,7 @@ export function Portfolio() {
               {filteredDemo.map((item) => (
                 <Card key={item.id} className="shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-lg">{item.name}</CardTitle>
+                    <CardTitle className="text-lg font-medium">{item.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <img src={item.image} alt={item.name} className="w-full h-auto rounded-lg" />

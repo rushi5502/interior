@@ -21,7 +21,7 @@ const Services = () => {
       id="Services"
       className="flex w-full justify-center items-center flex-col"
     >
-      <div className="py-4 mt-8">
+      <div className="py-4 mt-8 text-center">
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-5xl">Services</h1>
           <p>
