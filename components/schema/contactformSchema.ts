@@ -1,6 +1,6 @@
 import { z } from "zod";
 const phoneRegex =  /^\+?[1-9]\d{1,14}$/;
-    const ConsultSchema = z.object({
+    const ContactSchema = z.object({
     email: z
       .string()
       .email({
@@ -11,14 +11,12 @@ const phoneRegex =  /^\+?[1-9]\d{1,14}$/;
      phone: z.string().refine((phone) => phoneRegex.test(phone), {
       message: 'Invalid phone number format.',
     }),
-    address:z.string().min(1,{message:"requied"}),
-    area: z.string({
-        required_error: "Please select an area",
-      }),
-      description: z.string().min(30, {
+ 
+      subject:z.string().min(1,{message:"requied"}),
+      message: z.string().min(30, {
         message: " must be at least 30 characters.",
       }) 
   });
 
 
-  export default ConsultSchema;
+  export default ContactSchema;

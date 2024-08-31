@@ -54,13 +54,69 @@ import QuoteDiloag from './Consultation-dilog';
       const [isopen,setisopen] = useState(false);
     return ( 
       <> 
-      <Menubar className="p-8 fixed top-0 left-0 w-full z-50 font-thin justify-center flex border-b-0">
+      <Menubar className="p-8 fixed top-0 left-0 w-full z-50 font-thin justify-between items-center flex border-b-0">
+     
+   
 
-      <div className="md:flex gap-3  hidden  ">
-      <MenubarMenu>
-          <MenubarTrigger  className="cursor-pointer   font-normal ">
+      <div className="    flex  w-full     md:justify-center justify-between    ">
+      <span className=' md:hidden  block'>     ATHAREINTERIORS</span>
+        <div className='md:flex gap-3 hidden'> 
+            <MenubarMenu>
+                <MenubarTrigger  className="cursor-pointer   font-normal ">
+                  
+                <Link
+                className=' text-nowrap'
+              activeClass="active"
+              to="home"
+              spy={true}
+              smooth={true}
+              offset={50}
+              duration={500}
+            >
+              Home
+            </Link>
+                  </MenubarTrigger> 
+              </MenubarMenu>
+
+              <MenubarMenu>
+                <MenubarTrigger className="cursor-pointer font-normal" >
+                  
+                <Link
+                className=' text-nowrap'
+              activeClass="active"
+              to="Services"
+              spy={true}
+              smooth={true}
+              offset={50}
+              duration={500}
+            >
+              Services
+            </Link>
+                  </MenubarTrigger> 
+              </MenubarMenu>
+
+            <MenubarMenu>
+              <MenubarTrigger className="cursor-pointer font-normal" > 
+              <Link
+              className=' text-nowrap'
+            activeClass="active"
+            to="Portfolio"
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500}
+          >
+            Portfolio
+          </Link>
+          </MenubarTrigger> 
+            </MenubarMenu>
+
+
+        <MenubarMenu>
+          <MenubarTrigger className="cursor-pointer font-normal px-4" >
             
           <Link
+          className=' text-nowrap'
         activeClass="active"
         to="home"
         spy={true}
@@ -68,63 +124,15 @@ import QuoteDiloag from './Consultation-dilog';
         offset={50}
         duration={500}
       >
-        Home
-      </Link>
-            </MenubarTrigger> 
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger className="cursor-pointer font-normal" >
-            
-          <Link
-        activeClass="active"
-        to="Services"
-        spy={true}
-        smooth={true}
-        offset={50}
-        duration={500}
-      >
-        Services
-      </Link>
-            </MenubarTrigger> 
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger className="cursor-pointer font-normal" >
-            
-          <Link
-        activeClass="active"
-        to="Portfolio"
-        spy={true}
-        smooth={true}
-        offset={50}
-        duration={500}
-      >
-        Portfolio
-      </Link>
-      </MenubarTrigger> 
-        </MenubarMenu>
-
-
-        <MenubarMenu>
-          <MenubarTrigger className="cursor-pointer font-normal px-10" >
-            
-          <Link
-        activeClass="active"
-        to="home"
-        spy={true}
-        smooth={true}
-        offset={50}
-        duration={500}
-      >
-        logo
+         ATHAREINTERIORS
       </Link>
       </MenubarTrigger> 
         </MenubarMenu>
 
         <MenubarMenu>
-          <MenubarTrigger className="cursor-pointer font-normal">
-
-            
+          <MenubarTrigger className="cursor-pointer font-normal">  
           <Link
+          className=' text-nowrap'
         activeClass="active"
         to="aboutme"
         spy={true}
@@ -134,14 +142,13 @@ import QuoteDiloag from './Consultation-dilog';
       >
          About Us
       </Link>
-          </MenubarTrigger>
-           
+          </MenubarTrigger> 
         </MenubarMenu>
 
         <MenubarMenu>
-          <MenubarTrigger className="cursor-pointer font-normal"  > 
-          
+          <MenubarTrigger className="cursor-pointer font-normal"  >  
           <Link
+          className=' text-nowrap'
         activeClass="active"
         to="contact"
         spy={true}
@@ -152,38 +159,32 @@ import QuoteDiloag from './Consultation-dilog';
         Contact Us
       </Link>
           </MenubarTrigger> 
-        </MenubarMenu>  
+        </MenubarMenu>   
 
-
-        <MenubarMenu>
-         
-
-          <QuoteDiloag/>  
-         
-      
-      
-        </MenubarMenu>
-
-      </div>
+        <MenubarMenu> 
+          <QuoteDiloag/>   
+        </MenubarMenu> 
+    </div>
              
        
 
-      <MenubarMenu> 
-      <Sheet open={isopen} onOpenChange={setisopen}>
-<SheetTrigger className="font-semibold  md:hidden block"> <Grip /></SheetTrigger>
-<SheetContent>
-  <SheetHeader className="mb-8 flex gap-4 flex-row">
-  
-    <SheetTitle  className="flex gap-2 items-center">  Athare interiorss
-     </SheetTitle>  
-  </SheetHeader>
-  <Separator />
-     <div className="flex flex-col gap-10 items-start mt-4">
+    <MenubarMenu> 
+      <Sheet open={isopen} onOpenChange={setisopen}> 
+      <SheetTrigger className="font-semibold  md:hidden block"> <Grip /></SheetTrigger>
       
+      <SheetContent>
+        <SheetHeader className="mb-8 flex gap-4 flex-row">
+        
+          <SheetTitle  className="flex gap-2 items-center">  Athare interiorss
+          </SheetTitle>  
+        </SheetHeader>
+        <Separator />
+          <div className="flex flex-col gap-5 items-start mt-4"> 
 
-     <MenubarMenu>
-                
+          <MenubarMenu>
+                      
      <Link
+     className=' text-nowrap'
         activeClass="active"
         to="home"
         spy={true}
@@ -198,6 +199,7 @@ import QuoteDiloag from './Consultation-dilog';
         </MenubarMenu>
         <MenubarMenu>
         <Link
+        className=' text-nowrap'
         activeClass="active"
         to="Services"
         spy={true}
@@ -213,6 +215,7 @@ import QuoteDiloag from './Consultation-dilog';
         </MenubarMenu>
         <MenubarMenu>
         <Link
+        className=' text-nowrap'
         activeClass="active"
         to="Portfolio"
         spy={true}
@@ -230,6 +233,7 @@ import QuoteDiloag from './Consultation-dilog';
         <MenubarMenu>
                 
         <Link
+        className=' text-nowrap'
         activeClass="active"
         to="aboutme"
         spy={true}
@@ -248,6 +252,7 @@ import QuoteDiloag from './Consultation-dilog';
 
         <MenubarMenu>
         <Link
+        className=' text-nowrap'
         activeClass="active"
         to="contact"
         spy={true}
@@ -269,12 +274,13 @@ import QuoteDiloag from './Consultation-dilog';
 
 
 </SheetContent>
+
 </Sheet>
-        </MenubarMenu>
- 
 
+        </MenubarMenu> 
+        </div>
       </Menubar>
-
+  
  
  </>
       

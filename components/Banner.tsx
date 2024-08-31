@@ -33,8 +33,9 @@ const Banner = () => {
         className="opacity-90 -z-10 brightness-50"
       />
       <div className=' flex items-center justify-center h-full w-full text-center z-50'>
-        <div>
+        <div className='text-white '>
         <TypewriterEffect words={words}/>
+        <p className='py-2 md:text-sm  text-xs'>Lorem ipsum dolor, sit amet consectetur adipisicing elit.br Adipisci, odio!</p>
         <Button className="text-white">Free Consultation</Button>
         </div>
       </div>
